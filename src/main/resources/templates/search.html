@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kết quả tìm kiếm - Blog</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+      color: white;
+      padding: 15px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .header-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+    }
+
+    .back-link {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+
+    .back-link:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .search-info {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .search-info h2 {
+      margin: 0;
+      color: #2c3e50;
+      font-size: 20px;
+    }
+
+    .search-info p {
+      color: #4CAF50;
+      margin: 5px 0 0 0;
+      font-weight: 600;
+    }
+
+    h2 {
+      color: #2c3e50;
+      font-size: 22px;
+      margin: 30px 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #4CAF50;
+      display: inline-block;
+    }
+
+    .section {
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* User Grid */
+    .user-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .user-item {
+      background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+      padding: 15px;
+      text-align: center;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .user-item:hover {
+      border-color: #4CAF50;
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(76,175,80,0.2);
+    }
+
+    .user-item a {
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: 600;
+      font-size: 14px;
+      display: block;
+    }
+
+    .user-item a:hover {
+      color: #4CAF50;
+    }
+
+    /* Articles List */
+    .article-item {
+      padding: 18px 0;
+      border-bottom: 1px solid #e0e0e0;
+      transition: background 0.3s;
+    }
+
+    .article-item:hover {
+      background: #f9f9f9;
+      padding: 18px;
+      margin: 0 -18px;
+      padding-left: 18px;
+    }
+
+    .article-item:last-child {
+      border-bottom: none;
+    }
+
+    .article-item h3 {
+      margin: 0 0 8px 0;
+      font-size: 18px;
+    }
+
+    .article-item h3 a {
+      text-decoration: none;
+      color: #2c3e50;
+      transition: color 0.3s;
+    }
+
+    .article-item h3 a:hover {
+      color: #4CAF50;
+    }
+
+    .article-meta {
+      color: #7f8c8d;
+      font-size: 13px;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #7f8c8d;
+    }
+
+    .empty-state p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .pagination a,
+    .pagination span {
+      padding: 8px 12px;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+
+    .pagination a {
+      background: #4CAF50;
+      color: white;
+      transition: all 0.3s;
+    }
+
+    .pagination a:hover {
+      background: #45a049;
+    }
+
+    .pagination span {
+      background: #eceff1;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      .user-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .header-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      .article-item:hover {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">📖 Blog</div>
+      <a th:href="@{/}" class="back-link">← Quay lại trang chủ</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Search Info -->
+    <div class="search-info">
+      <h2>Kết quả tìm kiếm</h2>
+      <p>Từ khóa: "<strong th:text="${keyword}"></strong>"</p>
+    </div>
+
+    <!-- Users Section -->
+    <div class="section">
+      <h2>👥 Người dùng (<span th:text="${users.totalElements}"></span>)</h2>
+
+      <div th:if="${users.empty}" class="empty-state">
+        <p>😔 Không tìm thấy người dùng nào</p>
+      </div>
+
+      <div th:if="${!users.empty}" class="user-grid">
+        <div th:each="user : ${users}" class="user-item">
+          <a th:href="@{/users/{id}(id=${user.id})}" th:text="${user.name}"></a>
+          <small style="color: #7f8c8d;" th:text="${user.mark} + ' ⭐'"></small>
+        </div>
+      </div>
+
+      <!-- Users Pagination -->
+      <div class="pagination" style="margin-top: 25px;" th:if="${users.totalPages > 1}">
+        <a th:if="${users.hasPrevious()}"
+           th:href="@{/search(keyword=${keyword},page_users=${users.number-1})}">← Trước</a>
+        <span th:text="${users.number} + '/' + ${users.totalPages}"></span>
+        <a th:if="${users.hasNext()}"
+           th:href="@{/search(keyword=${keyword},page_users=${users.number+1})}">Sau →</a>
+      </div>
+    </div>
+
+    <!-- Articles Section -->
+    <div class="section">
+      <h2>📝 Bài viết (<span th:text="${articles.totalElements}"></span>)</h2>
+
+      <div th:if="${articles.empty}" class="empty-state">
+        <p>😔 Không tìm thấy bài viết nào</p>
+      </div>
+
+      <div th:if="${!articles.empty}">
+        <div th:each="article : ${articles}" class="article-item">
+          <h3>
+            <a th:href="@{/articles/{id}(id=${article.id})}" th:text="${article.title}"></a>
+          </h3>
+          <div class="article-meta">
+            <span>✍️ <strong th:text="${article.author.name}"></strong></span>
+            <span> • 📅 <span th:text="${#temporals.format(article.createdAt,'dd/MM/yyyy')}"></span></span>
+            <span> • ❤️ <span th:text="${article.likes.size()}"></span> lượt thích</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Articles Pagination -->
+      <div class="pagination" style="margin-top: 25px;" th:if="${articles.totalPages > 1}">
+        <a th:if="${articles.hasPrevious()}"
+           th:href="@{/search(keyword=${keyword},page_articles=${articles.number-1})}">← Trước</a>
+        <span th:text="${articles.number} + '/' + ${articles.totalPages}"></span>
+        <a th:if="${articles.hasNext()}"
+           th:href="@{/search(keyword=${keyword},page_articles=${articles.number+1})}">Sau →</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
