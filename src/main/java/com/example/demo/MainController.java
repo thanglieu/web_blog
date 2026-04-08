@@ -326,6 +326,7 @@ public class MainController {
             // Giảm điểm cho tác giả bài viết
             User author = article.getAuthor();
             author.setMark(author.getMark() - 1);
+            userService.save(author);
         } else {
             // Nếu chưa like, tạo like mới
             Like newLike = new Like();
@@ -336,6 +337,7 @@ public class MainController {
             // Tăng điểm cho tác giả bài viết
             User author = article.getAuthor();
             author.setMark(author.getMark() + 1);
+            userService.save(author);
             // lưu lại user author (nếu có UserService thì gọi save)
         }
 
